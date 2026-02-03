@@ -7,6 +7,7 @@ TEMP_FILE="${TEMP_FILE:-temperature}"
 FAIL_THRESHOLD="${FAIL_THRESHOLD:-3}"
 STATE_FILE="${STATE_FILE:-/run/w1-watchdog.state}"
 POWER_CYCLE_DELAY_SEC="${POWER_CYCLE_DELAY_SEC:-5}"
+POST_POWER_CYCLE_DELAY_SEC="${POST_POWER_CYCLE_DELAY_SEC:-10}"
 POWER_OFF_CMD="${POWER_OFF_CMD:-}"
 POWER_ON_CMD="${POWER_ON_CMD:-}"
 LOG_TAG="${LOG_TAG:-w1-watchdog}"
@@ -84,6 +85,10 @@ power_cycle() {
   log "power-cycle 1-wire: ON"
   bash -c "$POWER_ON_CMD"
   log "power-cycle 1-wire: DONE"
+  if (( POST_POWER_CYCLE_DELAY_SEC > 0 )); then
+    log "post power-cycle delay: ${POST_POWER_CYCLE_DELAY_SEC}s"
+    sleep "$POST_POWER_CYCLE_DELAY_SEC"
+  fi
 }
 
 main() {

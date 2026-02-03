@@ -8,9 +8,10 @@ Type=oneshot
 Environment="BUS_MASTER=/sys/bus/w1/devices/w1_bus_master1"
 Environment="SENSOR_GLOB=28-*"
 Environment="TEMP_FILE=temperature"
-Environment="FAIL_THRESHOLD=3"
+Environment="FAIL_THRESHOLD=1"
 Environment="POWER_CYCLE_DELAY_SEC=5"
-Environment="POWER_OFF_CMD=/usr/bin/wb-mqtt-publish -t /devices/wb-gpio/controls/5V_OUT -m 0"
-Environment="POWER_ON_CMD=/usr/bin/wb-mqtt-publish -t /devices/wb-gpio/controls/5V_OUT -m 1"
+Environment="POST_POWER_CYCLE_DELAY_SEC=10"
+Environment="POWER_OFF_CMD=/usr/bin/mosquitto_pub -h localhost -t /devices/wb-gpio/controls/5V_OUT/on -m 0"
+Environment="POWER_ON_CMD=/usr/bin/mosquitto_pub -h localhost -t /devices/wb-gpio/controls/5V_OUT/on -m 1"
 Environment="LOG_TAG=w1-watchdog"
 ExecStart=/opt/w1-monitor/w1-watchdog.sh

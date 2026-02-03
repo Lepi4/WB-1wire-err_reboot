@@ -17,8 +17,8 @@
 
 По умолчанию используется MQTT‑топик WB:
 
-- OFF: `/devices/wb-gpio/controls/5V_OUT` = `0`
-- ON:  `/devices/wb-gpio/controls/5V_OUT` = `1`
+- OFF: `/devices/wb-gpio/controls/5V_OUT/on` = `0`
+- ON:  `/devices/wb-gpio/controls/5V_OUT/on` = `1`
 
 Если у тебя другое имя выхода — поменяй в `POWER_OFF_CMD`/`POWER_ON_CMD`.
 
@@ -30,7 +30,8 @@
 - `SENSOR_GLOB` — маска датчиков (обычно `28-*`)
 - `TEMP_FILE` — имя файла температуры (`temperature`)
 - `FAIL_THRESHOLD` — сколько подряд ошибок до power‑cycle
-- `POWER_CYCLE_DELAY_SEC` — пауза питания
+- `POWER_CYCLE_DELAY_SEC` — пауза питания (до включения)
+- `POST_POWER_CYCLE_DELAY_SEC` — пауза после включения питания
 - `STDOUT` — печатать логи в stdout (для ручного запуска)
 - `LOG_TO_SYSLOG` — писать в syslog (1/0)
 - `OK_LOG_INTERVAL_SEC` — как часто писать «датчики доступны» (секунды)
