@@ -1,0 +1,10 @@
+[Unit]
+Description=Run 1-Wire watchdog every 5 minutes
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=5min
+Unit=w1-watchdog.service
+
+[Install]
+WantedBy=timers.target
